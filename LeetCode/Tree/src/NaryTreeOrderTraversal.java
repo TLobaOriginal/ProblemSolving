@@ -19,7 +19,25 @@ class Node {
 }
 
 public class NaryTreeOrderTraversal {
-    public List<List<Integer>> levelOrder(Node root) {
+    public List<List<Integer>> levelOrder(Node root){
+        List<List<Integer>> result = new ArrayList<>();
+        Solve(root, 0, result);
+        return result;
+    }
+
+    private void Solve(Node root, int level, List<List<Integer>> result) {
+        if(root == null) return;
+
+        if(level >= result.size()){
+            result.add(new ArrayList<>());
+        }
+
+        result.get(level).add(root.val);
+        for(Node node: root.children){
+            Solve(node, level + 1, result);
+        }
+    }
+    /*public List<List<Integer>> levelOrder(Node root) {
         if(root == null){
             return new ArrayList<>();
         }
@@ -53,5 +71,5 @@ public class NaryTreeOrderTraversal {
         }
 
         return result;
-    }
+    }*/
 }
